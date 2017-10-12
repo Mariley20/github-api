@@ -1,10 +1,19 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './Home.css';
 import { NavLink} from 'react-router-dom';
 import NavHome from './NavHome';
 
-const Home = ( {model} ) => {
+class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      validate : null
+    }
+  }
 
+render() {
+  const { model } = this.props;
+  console.log(model);
 	return (
     <div>
         <NavHome />
@@ -13,5 +22,5 @@ const Home = ( {model} ) => {
       </div>
 	);
 }
-
+}
 export default Home;

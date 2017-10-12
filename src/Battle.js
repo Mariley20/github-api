@@ -1,29 +1,48 @@
-import React from 'react';
-import { Container, Row, Col, Form, Label, Button, Input } from 'reactstrap';
+import React, {Component} from 'react';
+import { Row, Col, Form, Label, Button, Input } from 'reactstrap';
 import NavHome from './NavHome';
-const Battle = ({model}) => {
+
+class Battle extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      player1 : null,
+      player2 : null
+    }
+  }
+  user () {
+    this.setState ({
+      player1 : this.state.player1,
+      player2 : this.state.player2
+    });
+    console.log(this.state);
+  }
+
+render() {
+  const { model } = this.props;
+  // console.log(model.searchPlayer());
   return (
     <div>
     <NavHome />
-    <Container>
+    <Form  onSubmit={e => { e.preventDefault();
+              model.searchPlayer();
+            }} >
         <Row>
           <Col>
-            <Form >
-              <Label>Player Two</Label>
-              <Input type="text" placeholder="github username" />
+              <Label>Player One</Label>
+              <Input type="text" onChange={e => model.user.player1 = e.target.value} placeholder="github username" />
               <Button type="submit">Submit</Button>
-            </Form>
+
           </Col>
           <Col>
-          <Form >
             <Label>Player Two</Label>
-            <Input type="text" placeholder="github username" />
+            <Input onChange={e => model.user.player2 = e.target.value} type="text" placeholder="github username" />
             <Button type="submit">Submit</Button>
-          </Form>
           </Col>
         </Row>
-      </Container>
+        </Form>
       </div>
   )
+}
 }
 export default Battle;
